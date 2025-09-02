@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --brand:#FF2E8B; }
+.btn { @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl font-medium shadow-sm bg-pink-600 text-white hover:bg-pink-700 transition; }
+.input { @apply px-3 py-2 rounded-lg border border-neutral-300 w-full; }
+.card { @apply bg-white rounded-2xl shadow-md p-4; }
+.h1 { @apply text-2xl font-semibold; }
+.h2 { @apply text-lg font-semibold; }
+.link { @apply text-pink-700 hover:underline; }
+table { @apply w-full text-sm; }
+th, td { @apply p-2 text-left; }
+thead th { @apply border-b; }
+tbody tr { @apply border-b; }
