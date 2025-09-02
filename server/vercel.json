@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "api/[...path].mjs": { "runtime": "nodejs20.x" }
-  },
   "routes": [
     { "src": "/(.*)", "dest": "/api/[...path].mjs" }
   ]
