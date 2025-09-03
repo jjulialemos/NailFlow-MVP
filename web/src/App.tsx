@@ -5,7 +5,7 @@ import { api } from './api'
 
 export default function App() {
   const nav = useNavigate()
-  useEffect(()=>{ if (!api.token()) nav('/') },[])
+  useEffect(()=>{ (async () => { if (!(await api.token())) nav('/') })() },[])
   return (
     <div className="min-h-screen flex">
       <Sidebar />

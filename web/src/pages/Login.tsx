@@ -14,12 +14,11 @@ export default function Login(){
     e.preventDefault()
     setErr('')
     try {
-      const body:any = { email, password }
-      if (mode==='register') body.name = name || email.split('@')[0]
-      const data = await api.req(`/auth/${mode}`, { method:'POST', body: JSON.stringify(body) })
-      api.setToken(data.token); localStorage.setItem('user', JSON.stringify(data.user))
+      const data = mode === 'login'
+        ? await api.login(email, password)
+        : await api.register(email, password, name || email.split('@')[0])
       nav('/app')
-    } catch (e:any) { setErr(e?.error || 'Erro') }
+    } catch (e:any) { setErr(e?.message || 'Erro') }
   }
 
   return (

@@ -1,19 +1,14 @@
-import jwt from 'jsonwebtoken';
+import { auth } from './firebase.js';
 
-const SECRET = process.env.JWT_SECRET || 'dev-secret';
-
-export function signToken(payload){
-  return jwt.sign(payload, SECRET, { expiresIn: '7d' });
-}
-
-export function authMiddleware(req, res, next){
+export async function authMiddleware(req, res, next){
   const h = req.headers.authorization || '';
-  const t = h.startsWith('Bearer ') ? h.slice(7) : null;
-  if (!t) return res.status(401).json({ error:'missing_token' });
+  const idToken = h.startsWith('Bearer ') ? h.slice(7) : null;
+  if (!idToken) return res.status(401).json({ error:'missing_token' });
   try {
-    req.user = jwt.verify(t, SECRET);
+    const decodedToken = await auth.verifyIdToken(idToken);
+    req.user = { id: decodedToken.uid, email: decodedToken.email, name: decodedToken.name };
     next();
-  } catch {
+  } catch (error) {
     res.status(401).json({ error:'invalid_token' });
   }
 }

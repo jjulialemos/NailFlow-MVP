@@ -1,6 +1,15 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "index.mongo.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
-    { "src": "/(.*)", "dest": "/api/[...path].mjs" }
+    {
+      "src": "/(.*)",
+      "dest": "index.mongo.js"
+    }
   ]
 }
