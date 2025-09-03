@@ -5,9 +5,6 @@ import dayjs from 'dayjs';
 import dotenv from 'dotenv';
 import { authMiddleware } from './auth.js';
 import * as firestore from './firestore.models.js';
-import { authMiddleware, verifyFirebaseIdToken } from './auth.js';
-import * as firestore from './firestore.models.js';
-import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -36,7 +33,7 @@ app.post('/auth/login', async (req,res)=>{
 });
 
 // ---------- Protegidas ----------
-app.use(verifyFirebaseIdToken);
+app.use(authMiddleware);
 
 // Clients
 app.get('/clients', async (req,res)=>{

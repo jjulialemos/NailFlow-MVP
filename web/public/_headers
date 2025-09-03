@@ -1,0 +1,2 @@
+/*
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com https://cdn.vercel.app; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://vercel.com https://api.vercel.com; font-src 'self'; frame-src 'self' https://www.googletagmanager.com;
